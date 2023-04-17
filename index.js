@@ -24,6 +24,7 @@ app.post('/sendemail', async(req, res) => {
     const emailTo = req.body.to;
     const content = req.body.content;
     const htmlContent = req.body.html || "";
+    const subjectContent = req.body.subject;
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -41,7 +42,7 @@ app.post('/sendemail', async(req, res) => {
 
     await transporter.sendMail({
         ...mailOptions,
-        subject: "DSAII Club | Technovation Regitration Successful",
+        subject: subjectContent,
         text : content,
         html : htmlContent     
     });
